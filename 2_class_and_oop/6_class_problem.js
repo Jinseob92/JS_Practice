@@ -124,13 +124,28 @@ class FemaleIdol extends Idol {
     return `${this.name}이 춤을 춥니다.`;
   }
 }
-
-const newIveMembers = iveMembers.map((x) => new FemaleIdol(x["name"], x.year));
-const newBtsMembers = btsMembers.map((x) => new MaleIdol(x.name, x.year));
+const newIveMembers = iveMembers.map((x) => new FemaleIdol(x.name, x.year));
 console.log(newIveMembers);
+const newBtsMembers = btsMembers.map((x) => new MaleIdol(x.name, x.year));
 console.log(newBtsMembers);
 
-const IveIdolGroups = new IdolGroup("아이브", newIveMembers);
-const BtsIdolGroups = new IdolGroup("방탄소년단", newBtsMembers);
+const iveGroup = new IdolGroup("아이브", newIveMembers);
+console.log(iveGroup);
+const btsGroup = new IdolGroup("방탄소년단", newBtsMembers);
+console.log(btsGroup);
 
-console.log(BtsIdolGroups);
+const countrys = new Country("대한민국", [iveGroup, btsGroup]);
+console.log(countrys);
+
+const allTogether = new Country("대한민국", [
+  new IdolGroup(
+    "아이브",
+    iveMembers.map((x) => new FemaleIdol(x.name, x.year))
+  ),
+  new IdolGroup(
+    "방탄소년단",
+    btsMembers.map((x) => new MaleIdol(x.name, x.year))
+  ),
+]);
+
+console.log(allTogether);
